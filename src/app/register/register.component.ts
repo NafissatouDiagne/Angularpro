@@ -13,6 +13,8 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
+import { ApiService } from '../api.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     const isSubmitted = form && form.submitted;
@@ -29,8 +31,46 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
-passwordFormControl =new FormControl('',[Validators.required]);
-usernameFormControl = new FormControl('',[Validators.required])
-  matcher = new MyErrorStateMatcher();
+
+  dataApi={
+   username: '',
+    email:'',
+   password: ''
+  }
+
+  constructor(private apiService:ApiService,private _snackbar:MatSnackBar){}
+  message='';
+submitForm(form:NgForm){
+if(form.valid){
+  this.dataApi={
+    username:form.value.username,
+    email:form.value.email,
+    password:form.value.password
+
+}
+this.apiService.postRegister(this.dataApi).subscribe(
+  (response)=>{
+    this.message='Utilisateur ajouter ave succes';
+    this.snackBar();
+console.log(this.message,response)
+  },
+  (error)=>{
+    console.log('dataApi:',this.dataApi)
+    this.message='Erreur lors de l\'insertions des donnees';
+    this.snackBar();
+
+console.log(this.message,error)
+  }
+)
+}
+else{
+this.message='Formulaire invalid';
+this.snackBar();
+
+console.log(this.message)
+}
+}
+snackBar(){
+  this._snackbar.open(this.message,'X')
+}
 }

@@ -1,44 +1,36 @@
 <div class="ima">
   <div class="log" style="padding: 10%;">
-    <form class="example-form">
-      <h1>Register</h1>
+    <form class="example-form" #form="ngForm" (ngSubmit)="submitForm(form)">
+      <h1 style="margin-bottom: 50px;">Register</h1>
       <mat-form-field class="example-full-width">
         <mat-label>Username</mat-label>
-        <input type="texte" matInput [formControl]="usernameFormControl" [errorStateMatcher]="matcher"
-               placeholder="Ex. Celeste">
+        <input type="text" matInput name="username" [(ngModel)]="dataApi.username" required>
 
-        <mat-error *ngIf="usernameFormControl.hasError('username') && !usernameFormControl.hasError('required')">
-          Please enter a valid username address
+        <mat-error *ngIf="form.submitted && form.controls['username'].hasError('required')">
+          Username is <strong>required</strong>
         </mat-error>
-        <mat-error *ngIf="usernameFormControl.hasError('required')">
-          username is <strong>required</strong>
-        </mat-error>
-      </mat-form-field> <mat-form-field class="example-full-width">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
         <mat-label>Email</mat-label>
-        <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
-               placeholder="Ex. pat@example.com">
+        <input type="email" matInput name="email" [(ngModel)]="dataApi.email" required>
 
-        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-          Please enter a valid email address
-        </mat-error>
-        <mat-error *ngIf="emailFormControl.hasError('required')">
+        <mat-error *ngIf="form.submitted && form.controls['email'].hasError('required')">
           Email is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="form.submitted && form.controls['email'].hasError('email')">
+          Please enter a valid email address
         </mat-error>
       </mat-form-field>
       <mat-form-field class="example-full-width">
         <mat-label>Password</mat-label>
-        <input type="password" matInput [formControl]="passwordFormControl" [errorStateMatcher]="matcher"
-               placeholder="">
+        <input type="password" matInput name="password" [(ngModel)]="dataApi.password" required>
 
-        <mat-error *ngIf="passwordFormControl.hasError('password') && !passwordFormControl.hasError('required')">
-          Please enter a correct password
-        </mat-error>
-        <mat-error *ngIf="passwordFormControl.hasError('required')">
+        <mat-error *ngIf="form.submitted && form.controls['password'].hasError('required')">
           Password is <strong>required</strong>
         </mat-error>
       </mat-form-field>
       <div class="example-button-row">
-        <button mat-raised-button color="primary">Connecter</button>
+        <button mat-raised-button style="margin-top: 20px;" color="primary" type="submit" (click)="snackBar()">Connecter</button>
       </div>
     </form>
   </div>
