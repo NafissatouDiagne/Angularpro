@@ -1,0 +1,41 @@
+<!--<div><div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">l
+  @for (movie of movies; track movie) {
+    <div class="example-box" cdkDrag (click)="redirectToPage(movie.id)">
+      {{movie.title}}
+      <img *cdkDragPreview [src]="movie.poster" [alt]="movie.title" >
+    </div>
+  }
+</div>
+</div>
+--><div>
+  <app-navbar></app-navbar>
+</div>
+
+<div style="margin-top: 30px; padding: 20px;">
+  <h1>Formulaire d'inscription</h1>
+  <form class="example-form" #formu="ngForm" (ngSubmit)="submitFormToApi(formu)">
+    <mat-form-field class="example-full-width">
+      <mat-label>Title</mat-label>
+      <input type="text" id="title" name="title" matInput [(ngModel)]="dataApi.title" required>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Description</mat-label>
+      <input type="text" id="description" name="description" matInput [(ngModel)]="dataApi.description" required>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Image</mat-label>
+      <input type="text" id="imageUrl" name="imageUrl" matInput [(ngModel)]="dataApi.imageUrl" required>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Price</mat-label>
+      <input type="text" id="price" name="price" matInput [(ngModel)]="dataApi.price" required>
+    </mat-form-field>
+
+    <div class="example-button-row">
+      <button mat-raised-button color="primary" type="submit">Envoyer</button>
+    </div>
+  </form>
+</div>

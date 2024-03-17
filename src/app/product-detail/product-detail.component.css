@@ -1,0 +1,38 @@
+
+.example-card {
+  max-width: 400px;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+
+}
+/* Style CSS */
+.grid-container {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.data-container {
+  margin-top: 90px;
+}
+
+.example-card {
+  margin-bottom: 20px;
+}
+
+.example-card mat-card-content {
+  height: 100px; /* Adjust height as needed */
+}
+.grid-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 20px;
+}
+.data-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 20px;
+  margin-left: 20px;
+}

@@ -1,0 +1,43 @@
+
+
+<div class="data-container">
+  <mat-card class="example-card" cols="2" *ngFor="let list of listes">
+
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>Shiba Inu</mat-card-title>
+    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image [src]="list.url"  height="270px" alt="Photo of a Shiba Inu">
+  <mat-card-content>
+    <p>
+     {{list.description}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+</mat-card>
+
+
+</div>
+<div class="data-container">
+  <mat-card class="example-card" cols="2" *ngFor="let item of dataFromApi">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{item.title}}</mat-card-title>
+    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image [src]="item.imageUrl" height="270px" alt="Photo of a Shiba Inu">
+  <mat-card-content>
+    <p>
+    {{item.description}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+</mat-card>
+</div>
