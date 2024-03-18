@@ -25,4 +25,10 @@ export class ApiService {
   getRegister():Observable<any>{
     return this.http.get<any>(`${this.apiUrl}/user`)
   }
+  /**
+   * Login
+   */
+  postLogin(data:any):Observable<any>{
+    return this.http.post<any>(`${this.apiUrl}/login`,data)
+  }
 }

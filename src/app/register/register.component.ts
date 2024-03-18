@@ -15,6 +15,7 @@ import {
 import {ErrorStateMatcher} from '@angular/material/core';
 import { ApiService } from '../api.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     const isSubmitted = form && form.submitted;
@@ -38,7 +39,7 @@ export class RegisterComponent {
    password: ''
   }
 
-  constructor(private apiService:ApiService,private _snackbar:MatSnackBar){}
+  constructor(private apiService:ApiService,private _snackbar:MatSnackBar,private router:Router){}
   message='';
 submitForm(form:NgForm){
 if(form.valid){
@@ -50,7 +51,7 @@ if(form.valid){
 }
 this.apiService.postRegister(this.dataApi).subscribe(
   (response)=>{
-    this.message='Utilisateur ajouter ave succes';
+    this.message='Utilisateur ajouter avec succes';
     this.snackBar();
 console.log(this.message,response)
   },
@@ -72,5 +73,8 @@ console.log(this.message)
 }
 snackBar(){
   this._snackbar.open(this.message,'X')
+}
+Sign(){
+  this.router.navigate(['/login']);
 }
 }

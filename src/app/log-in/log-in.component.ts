@@ -13,6 +13,8 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
+import { ApiService } from '../api.service';
+import { Router } from '@angular/router';
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     const isSubmitted = form && form.submitted;
@@ -32,4 +34,36 @@ export class LogInComponent {
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
 passwordFormControl =new FormControl('',[Validators.required])
   matcher = new MyErrorStateMatcher();
+dataApi={
+  username:'',
+  password:''
 }
+constructor(private apiService:ApiService,private router:Router){}
+submitForm(form:NgForm){
+  if(form.valid){
+    this.dataApi={
+      username:form.value.username,
+      password:form.value.password
+    }
+    this.apiService.postLogin(this.dataApi).subscribe(
+      (response)=>{
+        console.log('Connexion reussie',response)
+
+
+    },
+    (error)=>{
+      console.log('Error',error)
+    }
+    )
+
+  }
+  else{
+    console.log("Formulaire invalid")
+  }
+}
+Sign(){
+  this.router.navigate(['/register']);
+}
+
+}
+

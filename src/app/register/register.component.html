@@ -1,5 +1,5 @@
 <div class="ima">
-  <div class="log" style="padding: 10%;">
+  <div class="log" style="padding: 5%;display: flex; justify-content: center; align-items: center;">
     <form class="example-form" #form="ngForm" (ngSubmit)="submitForm(form)">
       <h1 style="margin-bottom: 50px;">Register</h1>
       <mat-form-field class="example-full-width">
@@ -21,6 +21,7 @@
           Please enter a valid email address
         </mat-error>
       </mat-form-field>
+
       <mat-form-field class="example-full-width">
         <mat-label>Password</mat-label>
         <input type="password" matInput name="password" [(ngModel)]="dataApi.password" required>
@@ -30,8 +31,9 @@
         </mat-error>
       </mat-form-field>
       <div class="example-button-row">
-        <button mat-raised-button style="margin-top: 20px;" color="primary" type="submit" (click)="snackBar()">Connecter</button>
+        <button mat-raised-button style="margin-top: 10px;" color="primary" type="submit" (click)="snackBar()">S'inscrire</button>
       </div>
+      <div style="margin-top: 10px;">Si vous avez deja un compte <button mat-button style="color: blue;text-decoration-line: underline;" (click)="Sign()">Sign-In</button> </div>
     </form>
   </div>
 </div>
